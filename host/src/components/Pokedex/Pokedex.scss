@@ -1,0 +1,91 @@
+$border-radius: 30px;
+
+.pokedex-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: aquamarine;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+
+    > .pokedex-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 800px;
+        width: 460px;
+        max-height: 100vh;
+        max-width: 100vw;
+        border-radius: $border-radius;
+        position: relative;
+
+        > .pokedex-top-section, > .pokedex-bottom-section {
+            height: 25%;
+            width: 100%;
+            position: absolute;
+            object-fit: contain;
+        }
+
+        > .pokedex-top-section {
+            object-position: bottom center;
+            top: calc(25% - 2px);
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+            animation: pokedexTopAnimation 1s linear 2s forwards;
+        }
+
+        > .pokedex-bottom-section {
+            object-position: top center;
+            bottom: calc(25% - 2px);
+            border-bottom-left-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+            animation: pokedexBottomAnimation 1s linear 2s forwards;
+        }
+
+        > .pokedex-content {
+            background: #B3E7F0;
+            height: 4px;
+            width: calc(100% - 28px);
+            margin: 0 10px;
+            outline: 1px solid black;
+            border: 4px solid #8ac2d6;
+            animation: pokedexContentAnimation 1s linear 2s forwards;
+        }
+        
+    }
+}
+
+@keyframes pokedexContentAnimation {
+    from {
+        height: 4px;
+    }
+
+    to {
+        height: 100%;
+    }
+}
+
+@keyframes pokedexTopAnimation {
+    from {
+        top: calc(25% - 2px);
+        left: 0;
+    }
+
+    to {
+        top: -8%;
+    }
+}
+
+@keyframes pokedexBottomAnimation {
+    from {
+        bottom: calc(25% - 2px);
+        left: 0;
+    }
+
+    to {
+        bottom: -8%;
+    }
+}
