@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokeButton } from '../PokeButton/PokeButton';
+import Menu from '../../pages/Menu/Menu';
 import './Pokedex.scss';
 
 const Pokedex = () => {
@@ -9,11 +9,7 @@ const Pokedex = () => {
             <img className='pokedex-bottom-section' src='https://i.imgur.com/E6SbyAl.png' />
             <div className='pokedex-content'>
                 <div className='pokedex-page'>
-                    <PokeButton color="#EC7A6F" text="Pokédex"/>
-                    <PokeButton color="#FFCF4B" text="Pokédex"/>
-                    <PokeButton color="#59A9F4" text="Pokédex"/>
-                    <PokeButton color="#50C1A7" text="Pokédex"/>
-                    <PokeButton color="#7c528b" text="Pokédex"/>
+                    <Menu />
                 </div>
             </div>
         </div>
