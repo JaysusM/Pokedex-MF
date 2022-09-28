@@ -50,7 +50,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "host",
       filename: "remoteEntry.js",
-      remotes: {},
+      remotes: {
+        pokedex: "pokedex@http://localhost:3001/remoteEntry.js"
+      },
       exposes: {},
       shared: {
         ...deps,
