@@ -5,7 +5,7 @@ $pokedexAnimationConfig: 1s linear 2s forwards;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: aquamarine;
+    background: white;
     padding: 0;
     margin: 0;
     height: 100vh;
@@ -29,6 +29,7 @@ $pokedexAnimationConfig: 1s linear 2s forwards;
             width: 100%;
             position: absolute;
             object-fit: contain;
+            z-index: 1;
         }
 
         > .pokedex-top-section {
@@ -57,12 +58,20 @@ $pokedexAnimationConfig: 1s linear 2s forwards;
             animation: pokedexContentAnimation $pokedexAnimationConfig;
 
             > .pokedex-page {
-                margin: calc(min(100vh, 800px) * 0.2) 20px;
+                margin: 0 0 calc(min(100vh, 800px) * 0.2) 0;
                 opacity: 0;
                 display: flex;
                 flex-direction: column;
                 height: 60%;
                 animation: pokedexPageAnimation 1s linear 3s forwards;
+
+                > .pokedex-app {
+                    padding: calc(min(100vh, 800px) * 0.18) 20px 30px 20px;
+                    border-bottom-left-radius: 20px;
+                    border-bottom-right-radius: 20px;
+                    box-shadow: 0px 4px 4px 0px #00000021;
+                    background-color: #ffffff5c;
+                }
             }
         }
         

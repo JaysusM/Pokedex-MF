@@ -51,7 +51,8 @@ module.exports = {
       name: "host",
       filename: "remoteEntry.js",
       remotes: {
-        pokedex: "pokedex@http://localhost:3001/remoteEntry.js"
+        pokedex: "pokedex@http://localhost:3001/remoteEntry.js",
+        news: "news@http://localhost:4001/remoteEntry.js"
       },
       exposes: {},
       shared: {

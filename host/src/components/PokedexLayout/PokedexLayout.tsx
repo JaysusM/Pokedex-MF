@@ -1,6 +1,7 @@
 import React from 'react';
 import './PokedexLayout.scss';
 import Pokedex from 'pokedex/Pokedex';
+import News from 'news/News';
 
 const PokedexLayout = () => {
     return <div className='pokedex-wrapper'>
@@ -9,7 +10,12 @@ const PokedexLayout = () => {
             <img className='pokedex-bottom-section' src='https://i.imgur.com/E6SbyAl.png' />
             <div className='pokedex-content'>
                 <div className='pokedex-page'>
-                    <Pokedex />
+                    <div className='pokedex-app'>
+                        <Pokedex />
+                    </div>
+                    <div className='news-app'>
+                        <News />
+                    </div>
                 </div>
             </div>
         </div>
