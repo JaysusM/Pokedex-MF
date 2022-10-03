@@ -1,7 +1,7 @@
 import React from 'react';
 import './PokedexLayout.scss';
 import Pokedex from 'pokedex/Pokedex';
-import News from 'news/News';
+import 'pokemon_news/App';
 
 const PokedexLayout = () => {
     return <div className='pokedex-wrapper'>
@@ -14,7 +14,7 @@ const PokedexLayout = () => {
                         <Pokedex />
                     </div>
                     <div className='news-app'>
-                        <News />
+                        <vue-app />
                     </div>
                 </div>
             </div>
