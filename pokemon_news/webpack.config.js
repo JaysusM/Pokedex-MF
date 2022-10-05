@@ -13,7 +13,7 @@ module.exports = {
 
   devServer: {
     port: 4001,
-    historyApiFallback: true,
+    historyApiFallback: true
   },
 
   module: {
