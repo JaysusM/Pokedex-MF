@@ -50,7 +50,7 @@ module.exports = {
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
-        './App': './src/App.ts'
+        './News': './src/components/News/News.ts'
       },
       shared: require("./package.json").dependencies,
     }),

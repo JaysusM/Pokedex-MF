@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './PokedexLayout.scss';
 import Pokedex from 'pokedex/Pokedex';
-import 'pokemon_news/App';
+import { mount } from 'pokemon_news/News';
 
 const PokedexLayout = () => {
+    const newsRef = useRef(null);
+
+    useEffect(() => {
+        mount(newsRef.current);
+    }, []);
+
     return <div className='pokedex-wrapper'>
         <div className='pokedex-container'>
             <img className='pokedex-top-section' src='https://i.imgur.com/s2a1x2C.png' />
@@ -14,7 +20,7 @@ const PokedexLayout = () => {
                         <Pokedex />
                     </div>
                     <div className='news-app'>
-                        <vue-app />
+                        <div ref={ newsRef } />
                     </div>
                 </div>
             </div>

@@ -8,8 +8,8 @@ const Menu = () => {
         <PokeButton color="#FFCF4B" text="Pokédex"/>
         <PokeButton color="#59A9F4" text="Pokédex"/>
         <PokeButton color="#50C1A7" text="Pokédex"/>
-        <PokeButton color="#7C528B" text="Pokédex"/>
-        <PokeButton color="#B1736D" text="Pokédex"/>
+        {/* <PokeButton color="#7C528B" text="Pokédex"/>
+        <PokeButton color="#B1736D" text="Pokédex"/> */}
     </div>;
 }
 

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import News from './News';
+  import News from '../News/News.vue';
   export default {
     name: "app",
     components: {
