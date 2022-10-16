@@ -2,7 +2,7 @@ import { NewsInterface } from '@/interfaces/news.interface';
 
 class NewsApi {
 
-    static getLatestNews = (count: number = 3, offset: number = 0): Promise<NewsInterface[]> => {
+    static getLatestNews = (count: number = 6, offset: number = 0): Promise<NewsInterface[]> => {
         return fetch(`https://api.pokemon.com/us/api/news/?index=${ offset }&count=${ count }`)
             .then((response: Response) => response.json())
             .catch((error: Error) => {

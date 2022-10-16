@@ -2,7 +2,7 @@
     <div class="news-wrapper">
         <div class="news-header">
             <h3>Pokémon News</h3>
-            <a>View all</a>
+            <a @click="this.onViewAll?.()">View all</a>
         </div>
         <div v-for="item in news" class="news-item">
             <div class="news-item-title">
@@ -61,6 +61,9 @@
     import NewsApi from '../../shared/news-api';
     export default {
         name: "news",
+        props: {
+            onViewAll: { type: Function }
+        },
         data() {
             return {
                 loading: true,
