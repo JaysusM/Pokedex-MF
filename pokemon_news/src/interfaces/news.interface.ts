@@ -1,11 +1,7 @@
 export interface NewsInterface {
 
-    id: string,
-    title: string,
-    shortDescription: string,
-    date: string,
-    image: string,
-    tags: string,
+    title: string
+    image: string
     url: string,
 
 }

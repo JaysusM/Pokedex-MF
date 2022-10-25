@@ -4,7 +4,7 @@
             <h3>Pokémon News</h3>
             <a @click="this.onViewAll?.()">View all</a>
         </div>
-        <div v-for="item in news" class="news-item">
+        <div v-for="item in news" class="news-item" v-on:click="openNewsItem(item)">
             <div class="news-item-title">
                 <h4 v-html="item.title"></h4>
                 <p>{{ item.date }}</p>
@@ -35,12 +35,17 @@
         display: flex;
         flex-direction: row;
         max-height: 130px;
+        background: #00000024;
+        padding: 0 0 0 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        cursor: pointer;
     }
 
     .news-wrapper > .news-item > .news-item-title {
         display: flex;
         flex-direction: column;
-        min-width: 40%;
+        min-width: calc(60% - 25px);
         padding-right: 5px;
     }
     
@@ -63,6 +68,11 @@
         name: "news",
         props: {
             onViewAll: { type: Function }
+        },
+        methods: {
+            openNewsItem: (item) => {
+                window.open(item.url, '_blank');
+            }
         },
         data() {
             return {
