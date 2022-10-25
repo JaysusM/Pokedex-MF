@@ -74,7 +74,7 @@
             return NewsApi.getLatestNews()
                 .then((news) => {
                     this.loading = false;
-                    this.news = news
+                    this.news = news;
                 });
         }
     }
