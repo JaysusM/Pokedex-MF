@@ -27,8 +27,11 @@ const PokedexLayout = () => {
 
     return <div className='pokedex-wrapper'>
         <div className='pokedex-container'>
-            <img className='pokedex-top-section' src='https://i.imgur.com/s2a1x2C.png' />
-            <img className='pokedex-bottom-section' src='https://i.imgur.com/E6SbyAl.png' />
+            <img className='pokedex-top-section' src='/pokedex_top.png' />
+            <img className='pokeball-top' src='/pokeball_top.png' />
+            <div className='pokeball-light-effect'></div>
+            <img className='pokeball-bottom' src='/pokeball_bottom.png' />
+            <img className='pokedex-bottom-section' src='/pokedex_bottom.png' />
             <div className='pokedex-content'>
                 <div className='pokedex-page'>
                     <div className={ pokedexAppClassnames }>

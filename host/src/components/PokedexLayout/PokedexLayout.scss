@@ -1,5 +1,7 @@
 $border-radius: 30px;
 $pokedexAnimationConfig: 1s linear 2s forwards;
+$pokeballAnimationConfig: 1s linear 2s forwards;
+$lightAnimationConfig: 1200ms linear 2s forwards;
 
 .pokedex-wrapper {
     display: flex;
@@ -29,7 +31,41 @@ $pokedexAnimationConfig: 1s linear 2s forwards;
             width: 100%;
             position: absolute;
             object-fit: contain;
-            z-index: 1;
+            z-index: 95;
+        }
+
+        > .pokeball-light-effect {
+            position: absolute;
+            z-index: 100;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            opacity: 0;
+            animation: lightAnimation $lightAnimationConfig
+        }
+
+        > .pokeball-bottom, > .pokeball-top {
+            position: absolute;
+            height: 10%;
+            object-fit: contain;
+            z-index: 99;
+        }
+
+        > .pokeball-top {
+            object-position: bottom center;
+            height: calc(10% + 5px);
+            top: calc(40% - 5px);
+            animation: pokeballTopAnimation $pokeballAnimationConfig;
+        }
+        
+        > .pokeball-bottom {
+            object-position: top center;
+            height: calc(10% + 5px);
+            bottom: calc(40% - 5px);
+            animation: pokeballBottomAnimation $pokeballAnimationConfig;
         }
 
         > .pokedex-top-section {
@@ -62,7 +98,8 @@ $pokedexAnimationConfig: 1s linear 2s forwards;
                 opacity: 0;
                 display: flex;
                 flex-direction: column;
-                min-height: 60%;
+                min-height: 100%;
+                max-height: 100%;
                 animation: pokedexPageAnimation 1s linear 3s forwards;
 
                 > .pokedex-app {
@@ -74,10 +111,12 @@ $pokedexAnimationConfig: 1s linear 2s forwards;
                     overflow: hidden;
                     height: auto;
                     max-height: 500px;
-                    transition: max-height 500ms ease;
-
+                    min-height: 205px;
+                    transition: max-height 500ms ease, min-height 500ms ease;
+                    
                     &.closed {
                         max-height: 0;
+                        min-height: 0;
 
                         > .pokedex-app-wrapper {
                             transition: opacity 0s ease 500ms;
@@ -88,9 +127,13 @@ $pokedexAnimationConfig: 1s linear 2s forwards;
 
                 >.news-app {
                     padding: 10px 20px 20px 20px;
-                    max-height: calc(100% - calc(calc(min(100vh, 800px) * 0.18) * 1.9));
-                    min-height: calc(100% - calc(calc(min(100vh, 800px) * 0.18) * 1.9));
                     overflow-y: auto;
+                    margin-bottom: calc(min(100vh, 800px) * 0.18);
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                    &::-webkit-scrollbar { 
+                        display: none;
+                    }
                 }
             }
         }
@@ -128,6 +171,53 @@ $pokedexAnimationConfig: 1s linear 2s forwards;
         top: -8%;
     }
 }
+
+@keyframes lightAnimation {
+   0% {
+    opacity: 0;
+   }
+
+   5% {
+    opacity: 1;
+    box-shadow:
+      0 0 60px 30px #fff,
+      0 0 100px 60px #fff,
+      0 0 140px 90px #fff;
+   }
+
+   95% {
+    opacity: 1;
+    box-shadow:
+      0 0 60px 30px #fff,
+      0 0 100px 60px #fff,
+      0 0 140px 90px #fff;
+   }
+
+   100% {
+    opacity: 0;
+   }
+}
+
+@keyframes pokeballTopAnimation {
+    0% {
+        top: calc(40% + 1px);
+    }
+
+    100% {
+        top: calc(5% + 11px);
+    }
+}
+
+@keyframes pokeballBottomAnimation {
+    0% {
+        bottom: calc(40% + 1px);
+    }
+
+    100% {
+        bottom: calc(5% + 11px);
+    }
+}
+
 
 @keyframes pokedexBottomAnimation {
     from {
