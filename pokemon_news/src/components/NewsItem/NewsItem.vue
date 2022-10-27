@@ -1,5 +1,5 @@
 <template>
-    <div class="news-item" :class="skeleton && 'skeleton'" v-on:click="openNewsItem(newsItem)">
+    <div class="news-item" :class="skeleton && 'skeleton'" v-on:click="!skeleton && openNewsItem(newsItem)">
         <div class="news-item-title">
             <h4 v-if="!skeleton" v-html="newsItem.title"></h4>
             <p v-if="!skeleton">{{ newsItem.date }}</p>
@@ -81,9 +81,8 @@
         },
         methods: {
             openNewsItem: (item) => {
-                if (this.skeleton)
-                    return;
-                window.open(item.url, '_blank');
+                const url = item.url.includes('http') ? item.url : `https://pokemon.com${item.url}`;
+                window.open(url, '_blank');
             }
         }
     }

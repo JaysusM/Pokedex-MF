@@ -36,6 +36,9 @@ const PokedexLayout = () => {
                 <div className='pokedex-page'>
                     <div className={ pokedexAppClassnames }>
                         <Pokedex />
+                        <div className='pokeball-button'>
+                            <img src="/pokemon_arrow.png" />
+                        </div>
                     </div>
                     <div className='news-app'>
                         <div ref={ newsRef } />

@@ -113,10 +113,48 @@ $lightAnimationConfig: 1200ms linear 2s forwards;
                     max-height: 500px;
                     min-height: 205px;
                     transition: max-height 500ms ease, min-height 500ms ease;
+                    position: relative;
+
+                    > .pokeball-button {
+                        position: absolute;
+                        bottom: -20px;
+                        margin: 0 auto;
+                        height: 40px;
+                        width: 40px;
+                        box-shadow: 0px 0px 4px 5px #00000021;
+                        border-radius: 100%;
+                        background: white;
+                        z-index: 9999;
+                        left: calc(50% - 20px);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        transform: rotate(180deg);
+                        visibility: hidden;
+
+                        &:hover {
+                            animation: pokeballHoverAnimation 500ms;
+                        }
+
+                        > img {
+                            width: 70%;
+                            height: 70%;
+                        }
+                    }
                     
                     &.closed {
                         max-height: 0;
                         min-height: 0;
+                        animation: delay-pokeball-button;
+                        animation-fill-mode: forwards;
+                        animation-delay: 550ms;
+
+                        > .pokeball-button {
+                            visibility: visible;
+                            transition: visibility;
+                            transition-delay: 650ms;
+                            transition-duration: 500ms;
+                        }
 
                         > .pokedex-app-wrapper {
                             transition: opacity 0s ease 500ms;
@@ -139,6 +177,33 @@ $lightAnimationConfig: 1200ms linear 2s forwards;
         }
         
     }
+}
+
+@keyframes pokeballHoverAnimation {
+
+    0% {
+        left: calc(50% - 20px)
+    }
+
+    25% {
+        left: calc(50% - 21px)
+    }
+
+    50% {
+        left: calc(50% - 20px)
+    }
+
+    75% {
+        left: calc(50% - 19px)
+    }
+
+    100% {
+        left: calc(50% - 20px)
+    }
+}
+
+@keyframes delay-pokeball-button {
+    to { overflow: visible; }
 }
 
 @keyframes pokedexContentAnimation {
