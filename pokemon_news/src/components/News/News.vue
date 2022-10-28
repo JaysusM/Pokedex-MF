@@ -1,7 +1,7 @@
 <template>
     <div class="news-wrapper">
         <div class="news-header">
-            <h3>Pokémon News</h3>
+            <h3> Pokémon News</h3>
             <a @click="this.onViewAll?.()">View all</a>
         </div>
         <NewsItem v-if="!loading" v-for="item in news" :newsItem="item" />
@@ -24,6 +24,7 @@
 
     .news-wrapper > .news-header > h3 {
         margin: 0;
+        margin-left: 5px;
     }
 </style>
 
