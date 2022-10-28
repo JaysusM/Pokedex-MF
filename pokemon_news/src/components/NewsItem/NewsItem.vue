@@ -1,8 +1,12 @@
 <template>
     <div class="news-item" :class="skeleton && 'skeleton'" v-on:click="!skeleton && openNewsItem(newsItem)">
-        <div class="news-item-title">
+        <div class="news-item-information">
             <h4 v-if="!skeleton" v-html="newsItem.title"></h4>
-            <p v-if="!skeleton">{{ newsItem.date }}</p>
+            <div class="news-item-action" v-if="!skeleton">
+                <img src="/pokeball.svg" />
+                <i>Read full information</i>
+                <img src="/pokeball.svg" />
+            </div>
         </div>
         <img v-if="!skeleton" v-bind:src=newsItem.image />  
     </div>
@@ -52,15 +56,42 @@
         background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
     }
 
-    .news-item > .news-item-title {
+    .news-item > .news-item-information {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         min-width: calc(60% - 25px);
         padding-right: 5px;
     }
     
-    .news-item > .news-item-title > h4 {
-        margin-bottom: 0;
+    .news-item > .news-item-information > h4 {
+        margin: 0;
+        text-align: center;
+    }
+
+    .news-item > .news-item-information > .news-item-action {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .news-item > .news-item-information > .news-item-action > img {
+        height: 1rem;
+    }
+    
+    .news-item > .news-item-information > .news-item-action > img:first-child {
+        margin-right: 5px;
+    }
+
+    .news-item > .news-item-information > .news-item-action > img:last-child {
+        margin-left: 5px;
+    }
+
+    .news-item > .news-item-information > .news-item-action > i {
+        font-size: 12px;
+        margin: 0;
     }
 
     .news-item > img {
