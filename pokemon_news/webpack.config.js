@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const { VueLoaderPlugin } = require("vue-loader");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   output: {
@@ -44,6 +45,7 @@ module.exports = {
   },
 
   plugins: [
+    new Dotenv(),
     new VueLoaderPlugin(),
     new ModuleFederationPlugin({
       name: "pokemon_news",

@@ -2,11 +2,7 @@
     <div class="news-item" :class="skeleton && 'skeleton'" v-on:click="!skeleton && openNewsItem(newsItem)"> 
         <div class="news-item-information">
             <h4 v-if="!skeleton" v-html="newsItem.title"></h4>
-            <div class="news-item-action" v-if="!skeleton">
-                <img src="/pokeball.svg" />
-                <i>Read full information</i>
-                <img src="/pokeball.svg" />
-            </div>
+            <p v-if="!skeleton" v-html="newsItem.date"></p>
         </div>
         <img class="news-item-image" v-if="!skeleton" v-bind:src=newsItem.image />  
     </div>
@@ -66,7 +62,11 @@
     
     .news-item > .news-item-information > h4 {
         margin: 0;
-        text-align: center;
+    }
+
+    .news-item > .news-item-information > p {
+        color: #9f9f9f;
+        font-size: 12px;
     }
 
     .news-item > .news-item-information > .news-item-action {

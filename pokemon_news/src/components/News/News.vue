@@ -25,7 +25,6 @@
     .news-wrapper > .news-header > h2 {
         margin: 0;
         font-size: 20px;
-        margin-left: 5px;
     }
 
     .news-wrapper > .news-header > a {

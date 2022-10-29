@@ -1,36 +1,24 @@
 import { NewsInterface } from '@/interfaces/news.interface';
+import moment from 'moment';
 
 class NewsApi {
 
-    static getLatestNews = (count: number = 6, offset: number = 0): Promise<NewsInterface[]> => {
+    static getLatestNews = (): Promise<NewsInterface[]> => {
+        // @ts-ignore
+        const apiKey = process.env.NEWS_API_KEY;
 
-        // This endpoint is deprecated, no longer updated :'(
-        // return fetch(`https://api.pokemon.com/us/api/news/?index=${ offset }&count=${ count }`)
-        //     .then((response: Response) => response.json())
-        //     .catch((error: Error) => {
-        //         console.error(error.message);
-        //         return [];
-        //     });
-
-        // Data scraping information...
-        return fetch('https://api.pokemon.com/us')
-            .then((response: Response) => response.text())
-            .then((text: string) => {
-                text = text.split('\n').join('');
-                text = text.split('\r').join('');
-                text = text.replace(/>( )+</g, '><');
-                const articles: string[] = text.trim().match(/<a href="[^"]+"><h3>[^<]+<\/h3><p>[^<]*<\/p><img src="[^"]+" alt="[^"]+" \/>[^(<\/a>)]*<\/a>/g) ?? [];                
-                return articles.map((element) => {
-                    const title = deleteHTMLTagsAndFormat(element.match('<h3>.*</h3>')?.[0] ?? '');
-                    const image = element.match('<img src="[^"]+" alt="[^"]+" \/>')?.[0].split('src="')[1].split('"')[0] ?? '';
-                    const url = element.split('href="')[1].split('"')[0];
-                    return {
-                        title,
-                        image,
-                        url
-                    };
-                }); 
-            })
+        return fetch('https://newsapi.org/v2/everything?q=pokemon&sortBy=publishedAt&apiKey=' + apiKey, { method: 'GET' })
+            .then((response: Response) => response.json())
+            .then(({ articles }: { articles: any[]}) => {
+                return articles
+                    .slice(0, 10)
+                    .map(article => ({
+                        title: article.title,
+                        image: article.urlToImage,
+                        url: article.url,
+                        date: moment(article.publishedAt).format('DD MMM YYYY')
+                    }))
+            });
     }
 }
 
