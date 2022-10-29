@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
-module.exports = {
+module.exports = (_, argv) => ({
   output: {
     publicPath: "http://localhost:8080/",
   },
@@ -51,8 +51,8 @@ module.exports = {
       name: "host",
       filename: "remoteEntry.js",
       remotes: {
-        pokedex: "pokedex@http://localhost:3001/remoteEntry.js",
-        pokemon_news: "pokemon_news@http://localhost:4001/remoteEntry.js"
+        pokedex: "pokedex@" + (argv.mode === 'development' ? "http://localhost:3001/remoteEntry.js" : "https://pokedexmf-pokedex.vercel.app/remoteEntry.js"),
+        pokemon_news: "pokemon_news@" + (argv.mode === 'development' ? "http://localhost:4001/remoteEntry.js" : "https://pokedexmf-news.vercel.app/remoteEntry.js")
       },
       exposes: {},
       shared: {
@@ -71,4 +71,4 @@ module.exports = {
       template: "./src/index.html",
     }),
   ],
-};
+});
