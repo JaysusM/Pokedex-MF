@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   output: {
-    publicPath: "http://localhost:4001/",
+    publicPath: argv.mode === 'development' ? "http://localhost:4001/" : 'https://pokedexmf-news.vercel.app/',
   },
 
   resolve: {
