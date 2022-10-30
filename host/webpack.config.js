@@ -4,7 +4,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:8080/",
+    publicPath: argv.mode === 'development' ? "http://localhost:8080/" : 'https://jaysusm-pokedex-ehaohu3aw-jaysusm.vercel.app/',
   },
 
   resolve: {
