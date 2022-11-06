@@ -1,0 +1,70 @@
+.pokemon-profile-container {
+    display: flex;
+    flex-direction: column;
+
+    .pokemon-profile-body-image {
+        width: 45%;
+        align-self: center;
+        position: relative;
+        margin-top: 20px;
+
+        > .pokemon-profile-body-image-main {
+            width: 100%;
+        }
+
+        > .pokemon-profile-body-image-background {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;    
+            z-index: -1;
+            opacity: 0.8;
+        }
+    }
+
+    .pokemon-profile-header {
+        display: flex;
+        flex-direction: row;
+
+        .pokemon-profile-header-data {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            flex: 1;
+    
+            .pokemon-profile-header-title {
+                display: flex;
+                flex-direction: row;
+                min-width: 100%;
+                    
+                h2 {
+                    margin-top: 0;
+                    margin-bottom: 15px;
+                    padding-left: 2px;
+                }
+                
+                h4 {
+                    margin-top: 6px;
+                    margin-bottom: 15px;
+                    text-align: end;
+                    flex: 1;
+                }
+            }
+    
+            .pokemon-profile-header-types {
+                display: flex;
+                flex-direction: row;
+    
+                .pokemon-profile-header-type-item {
+                    background-color: #0000002c;
+                    padding: 7px 10px;
+                    border-radius: 15px;
+                    margin-right: 7px;
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

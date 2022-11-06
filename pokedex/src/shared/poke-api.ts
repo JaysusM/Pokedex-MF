@@ -13,6 +13,6 @@ export class PokeApi {
     }
     
     static getPokemonByExactNameOrIdentifier = (name: string): Promise<any[]> => {
-        return this.getRequest<any[]>(`https://pokeapi.co/api/v2/pokemon/${ name }`);
+        return this.getRequest<any[]>(`https://pokeapi.co/api/v2/pokemon/${ name.toLowerCase() }`);
     }
 }

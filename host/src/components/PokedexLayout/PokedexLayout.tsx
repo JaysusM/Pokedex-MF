@@ -21,9 +21,17 @@ const PokedexLayout = () => {
     const pokedexAppClassnames = classNames(
         'pokedex-app',
         {
+            'full': screenMode === PokedexScreenMode.POKEDEX,
             'closed': screenMode === PokedexScreenMode.NEWS
         }
     );
+
+    const pokedexNewsClassnames = classNames(
+      'news-app',
+      {
+        'closed': screenMode === PokedexScreenMode.POKEDEX
+      }
+    )
 
     return (
       <div className="pokedex-wrapper">
@@ -36,7 +44,7 @@ const PokedexLayout = () => {
           <div className="pokedex-content">
             <div className="pokedex-page">
               <div className={pokedexAppClassnames}>
-                <Pokedex />
+                <Pokedex onGainFocus={ () => setScreenMode(PokedexScreenMode.POKEDEX) } />
                 <div
                   className="pokeball-button"
                   onClick={() => setScreenMode(PokedexScreenMode.DEFAULT)}
@@ -44,7 +52,7 @@ const PokedexLayout = () => {
                   <img src="/pokeball.svg" />
                 </div>
               </div>
-              <div className="news-app">
+              <div className={pokedexNewsClassnames}>
                 <div ref={newsRef} />
               </div>
             </div>
