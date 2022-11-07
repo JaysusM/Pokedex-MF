@@ -4,5 +4,14 @@ export type PokemonLite = {
 }
 
 export type Pokemon = {
-    
+    name: string,
+    id: string,
+    sprites: {
+        front_default: string,
+        other: {
+            'official-artwork': {
+                front_default: string
+            }
+        }
+    }
 }

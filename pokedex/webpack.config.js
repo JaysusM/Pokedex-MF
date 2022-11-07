@@ -7,6 +7,8 @@ module.exports = (_, argv) => {
     output: {
       publicPath: argv.mode === 'development' ? "http://localhost:3001/" : 'https://pokedexmf-pokedex.vercel.app/',
     },
+    
+    devtool: 'eval-source-map',
 
     resolve: {
       extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],

@@ -3,7 +3,7 @@
     flex-direction: column;
 
     .pokemon-profile-body-image {
-        width: 45%;
+        width: 30%;
         align-self: center;
         position: relative;
         margin-top: 20px;
@@ -16,7 +16,7 @@
             position: absolute;
             left: 0;
             top: 0;
-            height: 100%;    
+            width: 100%;    
             z-index: -1;
             opacity: 0.8;
         }

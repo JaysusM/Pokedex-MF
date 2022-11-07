@@ -1,45 +1,32 @@
 import React, { useEffect } from 'react'
-import Input from '../../components/Input/Input';
 import Menu from '../../components/Menu/Menu';
 import PokemonProfile from '../../components/PokemonProfile/PokemonProfile';
-import { PokeApi } from '../../shared/poke-api';
-import { PokemonLite } from '../../types';
+import PokemonSearch from '../../components/PokemonSearch/PokemonSearch';
+import { PokeApi } from '../../utils/poke-api';
+import { PokedexContext, PokedexContextType } from '../../utils/PokedexContext';
+import { Pokemon, PokemonLite } from '../../types';
 import './Pokedex.scss';
-
-export type PokedexContextType = {
-    search: string,
-    pokemonList: PokemonLite[],
-    selectedPokemon: any | null
-}
-const PokedexContext = React.createContext<PokedexContextType>({ search: '', pokemonList: [], selectedPokemon: null })
 
 export type PokedexProps = {
     onGainFocus: () => void
 }
 
 const Pokedex = ({ onGainFocus }: PokedexProps) => {
-    const [pokedexState, setPokedexState] = React.useState<PokedexContextType>({ search: '', pokemonList: [], selectedPokemon: null });
-    const setPokedexSearch = (query: string) => {
-        setPokedexState({ ...pokedexState, search: query })
-    }
+    const [pokedexState, setPokedexState] = React.useState<PokedexContextType>({ pokemonList: [], selectedPokemon: null });
 
     useEffect(() => {
         PokeApi.getPokemonList()
             .then((pokemonList: PokemonLite[]) => setPokedexState({ ...pokedexState, pokemonList}))
     }, []);
 
-    useEffect(() => {
-        if (pokedexState.pokemonList.some(pokemon => pokemon.name === pokedexState.search.toLowerCase()))
-            PokeApi.getPokemonByExactNameOrIdentifier(pokedexState.search)
-                .then((pokemon: any) => {
-                    onGainFocus();
-                    setPokedexState({ ...pokedexState, selectedPokemon: pokemon });
-                });
-    }, [pokedexState.search]);
+    const onPokemonSelected = (pokemon: Pokemon): void => {
+        onGainFocus();
+        setPokedexState({ ...pokedexState, selectedPokemon: pokemon });
+    }
 
     return <PokedexContext.Provider value={ pokedexState }>
             <div className="pokedex-app-wrapper">
-                <Input onSearch={ setPokedexSearch }/>
+                <PokemonSearch onPokemonSelected={ onPokemonSelected } />
                 { !pokedexState.selectedPokemon && <Menu /> }
                 { pokedexState.selectedPokemon && <PokemonProfile pokemon={ pokedexState.selectedPokemon } />}
             </div>
