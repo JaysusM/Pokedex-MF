@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
 import Menu from '../../components/Menu/Menu';
-import PokemonProfile from '../../components/PokemonProfile/PokemonProfile';
-import PokemonSearch from '../../components/PokemonSearch/PokemonSearch';
+import PokemonProfile from '../PokemonProfile/PokemonProfile';
 import { PokeApi } from '../../utils/poke-api';
 import { PokedexContext, PokedexContextType } from '../../utils/PokedexContext';
 import { Pokemon, PokemonLite } from '../../types';
+import PokedexMenu from '../PokedexMenu/PokedexMenu';
 import './Pokedex.scss';
 
 export type PokedexProps = {
-    onGainFocus: () => void
+    onGainFocus: () => void,
+    onLoseFocus: () => void
 }
 
-const Pokedex = ({ onGainFocus }: PokedexProps) => {
+const Pokedex = ({ onGainFocus, onLoseFocus }: PokedexProps) => {
     const [pokedexState, setPokedexState] = React.useState<PokedexContextType>({ pokemonList: [], selectedPokemon: null });
 
     useEffect(() => {
@@ -24,11 +25,15 @@ const Pokedex = ({ onGainFocus }: PokedexProps) => {
         setPokedexState({ ...pokedexState, selectedPokemon: pokemon });
     }
 
+    const onProfileBack = (): void => {
+        onLoseFocus();
+        setPokedexState({ ...pokedexState, selectedPokemon: null });
+    }
+
     return <PokedexContext.Provider value={ pokedexState }>
             <div className="pokedex-app-wrapper">
-                <PokemonSearch onPokemonSelected={ onPokemonSelected } />
-                { !pokedexState.selectedPokemon && <Menu /> }
-                { pokedexState.selectedPokemon && <PokemonProfile pokemon={ pokedexState.selectedPokemon } />}
+                { !pokedexState.selectedPokemon && <PokedexMenu onPokemonSelected={ onPokemonSelected } /> }
+                { pokedexState.selectedPokemon && <PokemonProfile pokemon={ pokedexState.selectedPokemon } onBack={ onProfileBack }/>}
             </div>
         </PokedexContext.Provider>;
 }

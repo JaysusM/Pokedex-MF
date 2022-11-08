@@ -44,7 +44,7 @@ const PokedexLayout = () => {
           <div className="pokedex-content">
             <div className="pokedex-page">
               <div className={pokedexAppClassnames}>
-                <Pokedex onGainFocus={ () => setScreenMode(PokedexScreenMode.POKEDEX) } />
+                <Pokedex onGainFocus={ () => setScreenMode(PokedexScreenMode.POKEDEX) } onLoseFocus={ () => setScreenMode(PokedexScreenMode.DEFAULT) } />
                 <div
                   className="pokeball-button"
                   onClick={() => setScreenMode(PokedexScreenMode.DEFAULT)}

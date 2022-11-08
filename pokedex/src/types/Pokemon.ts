@@ -6,6 +6,11 @@ export type PokemonLite = {
 export type Pokemon = {
     name: string,
     id: string,
+    types: {
+        type: {
+            name: string
+        }
+    }[],
     sprites: {
         front_default: string,
         other: {
