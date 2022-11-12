@@ -5,7 +5,7 @@ const Input = ({ onSearch }: InputProps) => {
 
     return <div className='input-container'>
         <SearchSVG />
-        <input placeholder='Search Pokémon by exact name' onChange={ (event) => onSearch(event.target.value) } />
+        <input placeholder='Search Pokémon by name' onChange={ (event) => onSearch(event.target.value) } />
     </div>
 
 }

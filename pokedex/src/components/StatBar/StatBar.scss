@@ -1,0 +1,26 @@
+.stat-bar {
+    position: relative;
+
+    .stat-bar-value {
+        position: absolute;
+        bottom: 0;
+        height: 3px;
+        border-radius: 5px;
+
+        &[data-color="green"] {
+            background-color: #6EB98B;
+        }
+
+        &[data-color="orange"] {
+            background-color: #ff7b2a;
+        }
+
+        &[data-color="red"] {
+            background-color: #ff5039;
+        }
+    }
+
+    a {
+        font-size: 0.8em;
+    }
+}

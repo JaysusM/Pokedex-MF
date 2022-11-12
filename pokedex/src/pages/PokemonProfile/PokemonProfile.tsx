@@ -1,4 +1,5 @@
 import React from 'react';
+import StatBar from '../../components/StatBar/StatBar';
 import { Pokemon } from '../../types';
 import './PokemonProfile.scss';
 
@@ -9,6 +10,10 @@ export type PokemonProfileProps = {
 
 const PokemonProfile = ({ pokemon, onBack }: PokemonProfileProps) => {
     const formatName = (name: string) => name[0].toUpperCase() + name.slice(1);
+
+    const getStatValue = (name: string): number => {
+        return pokemon.stats.filter(stat => stat.stat.name === name)[0].base_stat;
+    }
 
     return <div className="pokemon-profile-container">
         <div className="pokemon-profile-navigation">
@@ -26,9 +31,19 @@ const PokemonProfile = ({ pokemon, onBack }: PokemonProfileProps) => {
                 </div>
             </div>
         </div>
-        <div className="pokemon-profile-body-image">
-            <img className="pokemon-profile-body-image-main" src={ pokemon.sprites.other['official-artwork'].front_default } />
-            <img className="pokemon-profile-body-image-background" src="/simple_pokeball.svg" />
+        <div className="pokemon-profile-body">
+            <div className="pokemon-profile-body-image">
+                <img className="pokemon-profile-body-image-main" src={ pokemon.sprites.other['official-artwork'].front_default } />
+                <img className="pokemon-profile-body-image-background" src="/simple_pokeball.svg" />
+            </div>
+            <div className="pokemon-profile-body-stats">
+                <StatBar name="Health Points" value={getStatValue('hp')} />
+                <StatBar name="Attack" value={getStatValue('attack')} />
+                <StatBar name="Defense" value={getStatValue('defense')} />
+                <StatBar name="Special Attack" value={getStatValue('special-attack')} />
+                <StatBar name="Special Defense" value={getStatValue('special-defense')} />
+                <StatBar name="Speed" value={getStatValue('speed')} />
+            </div>
         </div>
     </div>;
 }

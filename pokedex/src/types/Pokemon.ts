@@ -11,6 +11,14 @@ export type Pokemon = {
             name: string
         }
     }[],
+    stats: {
+        base_stat: number,
+        effort: number,
+        stat: {
+            name: string,
+            url: string
+        }
+    }[],
     sprites: {
         front_default: string,
         other: {

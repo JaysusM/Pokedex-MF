@@ -16,23 +16,43 @@
         }
     }
 
-    .pokemon-profile-body-image {
-        width: 30%;
-        align-self: center;
-        position: relative;
-        margin-top: 20px;
+    .pokemon-profile-body {
+        display: flex;
+        flex-direction: row;
+        background: #0000000f;
+        padding: 10px;
+        border-radius: 10px;
 
-        > .pokemon-profile-body-image-main {
-            width: 100%;
+        .pokemon-profile-body-stats {
+            margin-left: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .stat-bar {
+                padding-bottom: 10px;
+            }
         }
 
-        > .pokemon-profile-body-image-background {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;    
-            z-index: -1;
-            opacity: 0.8;
+        .pokemon-profile-body-image {
+            width: 45%;
+            align-self: center;
+            position: relative;
+            margin-top: 20px;
+
+            > .pokemon-profile-body-image-main {
+                width: 100%;
+            }
+
+            > .pokemon-profile-body-image-background {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;    
+                z-index: -1;
+                opacity: 0.8;
+            }
         }
     }
 
