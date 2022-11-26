@@ -1,9 +1,8 @@
-import PokemonSearch from '../components/PokemonSearch/PokemonSearch';
-import { Pokemon, PokemonLite } from '../types';
+import { Pokemon, PokemonLite, PokemonSpecie } from '../types';
 
 export class PokeApi {
 
-    private static getRequest<T> (url: string): Promise<T> {
+    static getRequest<T> (url: string): Promise<T> {
         return fetch(url)
             .then((response: Response) => response.json())
     }
@@ -17,8 +16,12 @@ export class PokeApi {
             }));
     }
     
-    static getPokemonByExactNameOrIdentifier = (name: string): Promise<Pokemon> => {
-        return this.getRequest<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${ name.toLowerCase().split(' ').join('-') }`)
+    static getPokemonByExactNameOrIdentifier = (query: string): Promise<Pokemon> => {
+        return this.getRequest<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${ query.toLowerCase().split(' ').join('-') }`)
             .then((pokemon: Pokemon) => ({ ...pokemon, name: pokemon.name.split('-').map(value => value[0].toUpperCase() + value.slice(1)).join(' ') }));
+    }
+
+    static getPokemonSpeciesByExactNameOrIdentifier = (query: string): Promise<PokemonSpecie> => {
+        return this.getRequest<PokemonSpecie>(`https://pokeapi.co/api/v2/pokemon-species/${ query.toLowerCase().split(' ').join('-') }`);
     }
 }

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import Menu from '../../components/Menu/Menu';
 import PokemonProfile from '../PokemonProfile/PokemonProfile';
 import { PokeApi } from '../../utils/poke-api';
 import { PokedexContext, PokedexContextType } from '../../utils/PokedexContext';

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import StatBar from '../../components/StatBar/StatBar';
-import { Pokemon } from '../../types';
+import useEvolution from '../../hooks/useEvolution';
+import { Pokemon, PokemonEvolutionChainLite } from '../../types';
 import './PokemonProfile.scss';
 
 export type PokemonProfileProps = {
@@ -8,8 +9,11 @@ export type PokemonProfileProps = {
     onBack: () => void
 }
 
+
+
 const PokemonProfile = ({ pokemon, onBack }: PokemonProfileProps) => {
     const formatName = (name: string) => name[0].toUpperCase() + name.slice(1);
+    const [evolutions, loading] = useEvolution(pokemon.name);
 
     const getStatValue = (name: string): number => {
         return pokemon.stats.filter(stat => stat.stat.name === name)[0].base_stat;
@@ -45,6 +49,7 @@ const PokemonProfile = ({ pokemon, onBack }: PokemonProfileProps) => {
                 <StatBar name="Speed" value={getStatValue('speed')} />
             </div>
         </div>
+        { evolutions.evolutions.map(evolution => evolution.name )}
     </div>;
 }
 
