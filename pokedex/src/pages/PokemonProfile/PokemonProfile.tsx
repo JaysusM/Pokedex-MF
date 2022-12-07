@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
+import { PokemonEvolution } from '../../components/PokemonEvolution/PokemonEvolution';
 import StatBar from '../../components/StatBar/StatBar';
 import useEvolution from '../../hooks/useEvolution';
-import { Pokemon, PokemonEvolutionChainLite } from '../../types';
+import { Pokemon } from '../../types';
+import { capitalize } from '../../utils/utils';
 import './PokemonProfile.scss';
 
 export type PokemonProfileProps = {
@@ -9,10 +11,7 @@ export type PokemonProfileProps = {
     onBack: () => void
 }
 
-
-
 const PokemonProfile = ({ pokemon, onBack }: PokemonProfileProps) => {
-    const formatName = (name: string) => name[0].toUpperCase() + name.slice(1);
     const [evolutions, loading] = useEvolution(pokemon.name);
 
     const getStatValue = (name: string): number => {
@@ -28,10 +27,10 @@ const PokemonProfile = ({ pokemon, onBack }: PokemonProfileProps) => {
             <img className="pokemon-picture" src={ pokemon.sprites.front_default } />
             <div className="pokemon-profile-header-data">
                 <div className="pokemon-profile-header-title">
-                    <h2>{ formatName(pokemon.name) }</h2>
+                    <h2>{ capitalize(pokemon.name) }</h2>
                 </div>
                 <div className="pokemon-profile-header-types">
-                    { pokemon.types.map((typeItem, index) => (<div key={ index } className="pokemon-profile-header-type-item">{ formatName(typeItem.type.name) }</div>)) }
+                    { pokemon.types.map((typeItem, index) => (<div key={ index } className="pokemon-profile-header-type-item">{ capitalize(typeItem.type.name) }</div>)) }
                 </div>
             </div>
         </div>
@@ -49,7 +48,10 @@ const PokemonProfile = ({ pokemon, onBack }: PokemonProfileProps) => {
                 <StatBar name="Speed" value={getStatValue('speed')} />
             </div>
         </div>
-        { evolutions.evolutions.map(evolution => evolution.name )}
+        { !loading && evolutions && <div className="pokemon-profile-evolution-chain">
+            <h4>Evolution Chain</h4>
+            <PokemonEvolution evolutionChain={evolutions} />
+        </div> }
     </div>;
 }
 

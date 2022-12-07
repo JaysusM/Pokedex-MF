@@ -116,6 +116,7 @@ $lightAnimationConfig: 1200ms linear 2s forwards;
                     position: relative;
 
                     &.full {
+                        overflow-y: auto;
                         padding: calc(min(100vh, 800px) * 0.18) 20px calc(min(100vh, 800px) * 0.18) 20px;
                         flex: 1;
                     }

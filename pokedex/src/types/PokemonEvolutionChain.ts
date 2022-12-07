@@ -1,6 +1,9 @@
 export type PokemonEvolutionChain = {
     chain: {
-        evolves_to: PokemonEvolvesToDetails[]
+        evolves_to: PokemonEvolvesToDetails[],
+        species: {
+            name: string
+        }
     }
 }
 
@@ -13,7 +16,6 @@ type PokemonEvolvesToDetails = {
 }
 
 type PokemonEvolutionDetails = {
-
     min_level: number,
     trigger: {
         name: string
@@ -21,11 +23,16 @@ type PokemonEvolutionDetails = {
 }
 
 export type PokemonEvolutionChainLite = {
-    evolutions: {
-        name: string,
-        min_level: number,
-        trigger: {
-            name: string
-        }
-    }[]
+    evolutions: PokemonEvolutionChainItem[]
 };
+
+export type PokemonEvolutionChainItem = {
+    name: string,
+    min_level?: number,
+    min_happiness?: number,
+    item?: string,
+    trigger?: {
+        name: string
+    },
+    sprite?: string
+}
